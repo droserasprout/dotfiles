@@ -2,5 +2,17 @@
 	"link": {
 		".config/i3/": "~/.config/i3",
 		".config/polybar/": "~/.config/polybar"
-	}
+	},
+        "install_cmd": "pacaur -Syu",
+        "install": [
+                "i3-wm",
+                "wireless_tools",
+                "jsoncpp",
+                "i3ipc-glib-git",
+                "polybar-git",
+                "ttf-font-awesome",
+                "ttf-paratype",
+                "oblogout",
+                "j4-dmenu-desktop-git"
+        ]
 }
