@@ -1,0 +1,187 @@
+#################
+# Basic options #
+#################
+
+set $psst --no-startup-id
+set $update && killall -USR1 polybar
+font pango:PT Sans 11
+floating_modifier Mod4
+workspace_layout tabbed
+new_window          pixel 0
+new_float           pixel 3
+hide_edge_borders   none
+
+#############
+# Autostart #
+#############
+
+exec export QT_QPA_PLATFORMTHEME="qt5ct"
+
+exec $psst feh --bg-scale /data/wallpaper.jpg
+exec $psst yakuake
+exec $psst polybar default
+exec $psst nm-tray
+exec $psst setxkbmap ru,us -option grp:alt_shift_toggle
+
+###########
+# Hotkeys #
+###########
+
+bindsym Mod1+F2 exec i3-dmenu-desktop
+bindsym Mod1+space exec i3-dmenu-desktop
+
+# kill focused window
+bindsym Mod4+Shift+q kill
+
+# list open windows to switch to
+bindsym Mod1+Tab focus left
+bindsym Mod1+Shift+Tab focus right
+
+# change focus
+bindsym Mod4+j focus left
+bindsym Mod4+k focus down
+bindsym Mod4+l focus up
+bindsym Mod4+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+j move left
+bindsym Mod4+Shift+k move down
+bindsym Mod4+Shift+l move up
+bindsym Mod4+Shift+colon move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+#bindsym Mod4+d focus child
+
+# switch to workspace
+bindsym Mod4+1 workspace 1
+bindsym Mod4+2 workspace 2
+bindsym Mod4+3 workspace 3
+bindsym Mod4+4 workspace 4
+bindsym Mod4+5 workspace 5
+bindsym Mod4+6 workspace 6
+bindsym Mod4+7 workspace 7
+bindsym Mod4+8 workspace 8
+bindsym Mod4+9 workspace 9
+bindsym Mod4+0 workspace 10
+
+# move focused container to workspace
+bindsym Mod4+Shift+1 move container to workspace 1
+bindsym Mod4+Shift+2 move container to workspace 2
+bindsym Mod4+Shift+3 move container to workspace 3
+bindsym Mod4+Shift+4 move container to workspace 4
+bindsym Mod4+Shift+5 move container to workspace 5
+bindsym Mod4+Shift+6 move container to workspace 6
+bindsym Mod4+Shift+7 move container to workspace 7
+bindsym Mod4+Shift+8 move container to workspace 8
+bindsym Mod4+Shift+9 move container to workspace 9
+bindsym Mod4+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod4+r mode "resize"
+
+##
+# system
+##
+set Mod4e_system    [L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF
+bindsym Mod1+Delete mode "Mod4e_system"
+bindsym Ctrl+Mod1+BackSpace mode "Mod4e_system"
+mode "Mod4e_system" {
+    bindsym l exec $psst ~/.i3/i3exit.sh lock, mode "default"
+    bindsym o exec $psst ~/.i3/i3exit.sh logout, mode "default"
+    bindsym s exec $psst ~/.i3/i3exit.sh suspend, mode "default"
+    bindsym r exec $psst ~/.i3/i3exit.sh reboot, mode "default"
+    bindsym p exec $psst ~/.i3/i3exit.sh poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# ceeriously styled i3
+set $bg     #2f343f
+set $fg     #404552
+set $hi     #fce94f
+set $ac     #4084d6
+set $tx     #2d323d
+set $ia     #9e9e9e
+set $be     #8faf9f
+set $yw     #f8f893
+set $gn     #81c181
+set $rd     #bf9b76
+set $id     #f9f8ff
+set $ce     #ceecee
+set $sl     #7f7f7f
+
+# set some nice colors      border  background  text    indicator
+client.focused              $ac     $ac         $tx     $id
+client.unfocused            $bg     $bg         $ia     $id
+client.focused_inactive     $bg     $bg         $ac     $id
+client.urgent               $ac     $ac         $tx     $id
+#border & indicator are ignored
+client.placeholder          $bg     $bg         $bg     $bg
+

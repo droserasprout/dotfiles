@@ -1,0 +1,161 @@
+; theme: orange
+; author: nvnehi
+; website: http://nnh.io
+;
+; requires:
+;   i3, playerctl
+;   fonts: font awesome, source code pro or bitocra
+;
+; toggled on/off:
+;   fonts
+;   tray
+;
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+
+[colors]
+background = #222222
+foreground = #888888
+foreground-alt = #363636
+highlight = #eeeeee
+secondary = #0f0
+
+[bar/default]
+width = 1920
+height = 22
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = PTSans:size=13;2
+font-1 = Ionicons:size=13;3
+font-2 = FontAwesome:size=13;3
+
+modules-left = i3 music
+modules-center = date
+modules-right = cpu memory filesystem wifi pavolume weather keyboard xbacklight powermenu
+#module-margin = 2
+tray-position = none
+tray-transparent = false
+tray-background = ${colors.background}
+tray-maxsize = 22
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label =  %percentage%%
+#format-margin = 2
+format-padding = 2
+
+[module/memory]
+type = internal/memory
+interval = 2
+label =  %percentage_used%%
+#format-margin = 2
+format-padding = 2
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted =  %free%
+label-unmounted = "not mounted"
+#format-margin = 2
+format-padding = 2
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 2
+warn-temperature = 80
+ramp-0 = "    "
+ramp-1 = "    "
+ramp-2 = "    "
+format = <ramp> <label>
+format-foreground = ${colors.foreground}
+format-warn = <ramp> <label-warn>
+label = %temperature%
+label-warn-foreground = ${colors.highlight}
+label-warn = HOT!  %temperature%
+#format-margin = 2
+format-padding = 2
+
+[module/pavolume]
+type = custom/script
+interval = 2
+label = %output%
+exec = ~/.config/polybar/pavolume.sh
+click-right = exec pavucontrol
+click-left = ~/.config/polybar/pavolume.sh --togmute
+scroll-up = ~/.config/polybar/pavolume.sh --up
+scroll-down = ~/.config/polybar/pavolume.sh --down
+#format-margin = 2
+format-padding = 2
+
+[module/date]
+type = internal/date
+interval = 30
+date = "%d %h %Y"
+date-alt = "%d/%m/%y"
+time = "%H:%M"
+time-alt = "%H:%M"
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = %date%, %time%
+
+[module/powermenu]
+type = custom/text
+content = 
+click-left = oblogout
+#format-margin = 1
+format-padding = 1
+
+[module/keyboard]
+type = internal/xkeyboard
+#format-margin = 1
+format-padding = 1
+
+[module/xbacklight]
+type = internal/xbacklight
+output = LVDS1
+enable-scroll = true
+label = 
+#format-margin = 1
+format-padding = 1
+
+[module/weather]
+type = custom/script
+interval = 300
+format = <label>
+format-prefix = " "
+exec = ~/.config/polybar/weather
+#format-margin = 2
+format-padding = 2
+
+[module/music]
+type = custom/script
+interval = 2
+label = %output:0:90:...%
+exec = ~/.config/polybar/mpris.sh
+#format-margin = 2
+format-padding = 2
+
+[module/i3]
+type = internal/i3
+index-sort = true
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.foreground}
+#format-margin = 0
+
+[module/wifi]
+type = custom/script
+interval = 5
+label =  %output%
+exec = iwgetid -r
+click-left = konsole -e nmtui-connect --hide-menubar
+#format-margin = 2
+format-padding = 2

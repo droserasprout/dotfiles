@@ -1,0 +1,145 @@
+; theme: orange
+; author: nvnehi
+; website: http://nnh.io
+;
+; requires:
+;   i3, playerctl
+;   fonts: font awesome, source code pro or bitocra
+;
+; toggled on/off:
+;   fonts
+;   tray
+;
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+
+[colors]
+background = #222222
+foreground = #888888
+foreground-alt = #363636
+highlight = #eeeeee
+secondary = #0f0
+
+[spacing]
+padding = 1
+
+[bar/default]
+width = 1920
+height = 22
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = PTSans:size=13;2
+font-1 = Ionicons:size=13;3
+font-2 = FontAwesome:size=13;3
+
+modules-left = i3 music
+modules-center = date
+modules-right = cpu memory filesystem volume weather keyboard xbacklight powermenu
+module-margin-left = 1
+module-margin-right = 2
+tray-position = none
+tray-padding = ${spacing.padding}
+tray-transparent = false
+tray-background = ${colors.background}
+tray-maxsize = 22
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-padding = ${spacing.padding}
+label =  %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-padding = ${spacing.padding}
+label =  %percentage_used%%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+format-mounted-padding = ${spacing.padding}
+label-mounted =  %free%
+label-unmounted = "not mounted"
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 2
+warn-temperature = 80
+ramp-0 = "    "
+ramp-1 = "    "
+ramp-2 = "    "
+format = <ramp> <label>
+format-foreground = ${colors.foreground}
+format-warn = <ramp> <label-warn>
+format-padding = ${spacing.padding}
+format-warn-padding = ${spacing.padding}
+label = %temperature%
+label-warn-foreground = ${colors.highlight}
+label-warn = HOT!  %temperature%
+
+[module/volume]
+type = internal/volume
+label-volume-foreground = ${colors.foreground}
+label-volume-background = ${colors.background}
+label-volume-padding = ${spacing.padding}
+label-volume = " %percentage%%"
+label-muted-padding = ${spacing.padding}
+label-muted = " %percentage%%"
+right-click = exec pavucontrol
+
+[module/date]
+type = internal/date
+interval = 5
+date = 
+date-alt = "%m/%d/%y,"
+time = "%l:%M %p"
+time-alt = "%l:%M %p"
+format-padding = ${spacing.padding}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = %date% %time%
+
+[module/powermenu]
+type = custom/text
+content = 
+click-left = oblogout
+
+[module/keyboard]
+type = internal/xkeyboard
+format-margin = 0
+format-padding= 0
+
+[module/xbacklight]
+type = internal/xbacklight
+output = LVDS1
+enable-scroll = true
+label = 
+padding = 0
+
+[module/weather]
+type = custom/script
+interval = 3000
+format = <label>
+format-prefix = " "
+exec = ~/.config/polybar/weather
+
+[module/music]
+type = custom/script
+interval = 2
+label = %output:0:90:...%
+exec = ~/.config/polybar/mpris.sh
+
+[module/i3]
+type = internal/i3
+index-sort = true
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.foreground}
