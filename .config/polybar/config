@@ -24,7 +24,6 @@ highlight = #eeeeee
 secondary = #0f0
 
 [bar/default]
-width = 1920
 height = 22
 background = ${colors.background}
 foreground = ${colors.foreground}
