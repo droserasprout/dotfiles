@@ -1,11 +1,31 @@
 {
 	"link": {
-		".config/i3/": "~/.config/i3",
-		".config/polybar/": "~/.config/polybar"
+		".config/i3/":		"~/.config/i3",
+		".config/polybar/":	"~/.config/polybar",
+		".config/kdeglobals":	"~/.config/kdeglobals",
+		".config/qt5ct/":	"~/.config/qt5ct",
+		".config/fontconfig/":	"~/.config/fontconfig",
+		".config/gtk-3.0/":	"~/.config/gtk-3.0",
+		".config/mpv/":		"~/.config/mpv",
+		".config/deadbeef/":	"~/.config/deadbeef",
+		".config/qt5ct/":	"~/.config/qt5ct",
+		".config/twmn/":	"~/.config/twmn",
+		".config/breezerc":	"~/.config/breezerc",
+		".config/gtkrc":	"~/.config/gtkrc",
+		".config/kateschemarc":	"~/.config/kateschemarc",
+		".config/yakuakerc":	"~/.config/yakuakerc",
+		".local/share/konsole/Shell.profile": "~/.local/share/konsole/Shell.profile",
+		".local/share/yakuake/Shell.profile": "~/.local/share/yakuake/Shell.profile",
+		".gtkrc-2.0":		"~/.gtkrc-2.0",
+		".gtkrc-2.0-kde4":	"~/.gtkrc-2.0-kde4",
+		".profile":		"~/.profile",
+		".Xresources":		"~/.Xresources",
+		".zshrc":		"~/.zshrc"
 	},
 	"install_cmd": "pacaur -Syu --needed",
 	"install": [
 		"zsh",
+		"oh-my-zsh-git",
 		"i3-wm",
 		"wireless_tools",
 		"jsoncpp",
@@ -16,13 +36,14 @@
 		"oblogout",
 		"j4-dmenu-desktop-git",
 		"feh",
-		"imagemagick"
+		"imagemagick",
 		"twmn-git",
 		"yakuake",
 		"lightdm",
 		"lightdm-gtk-greeter",
 		"light-locker",
 		"papirus-icon-theme-git",
+		"papirus-dark-konsole-colorscheme-git",
 		"papirus-dark-yakuake-theme-git",
 		"qt5ct",
 		"pavucontrol",
@@ -31,6 +52,9 @@
 		"unrar",
 		"unzip",
 		"p7zip",
-		"kate"
+		"kate",
+		"breeze",
+		"mpv",
+		"deadbeef"
 	]
 }
