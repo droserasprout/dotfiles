@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=PapirusDarkSolarized
+ColorScheme=PapirusDark
 Font=Noto Mono,10,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
