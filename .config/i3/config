@@ -10,6 +10,8 @@ new_window          pixel 0
 new_float           pixel 3
 hide_edge_borders   none
 
+for_window [class="yakuake"] fullscreen enable
+
 ##
 # Autostart
 ##
